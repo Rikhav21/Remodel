@@ -90,9 +90,14 @@
                                     "<li>Convert the bed into a bed pritner</li>" +
                                     "<li>Redesign the hotend and swap out the motors to optimize for speed</li>" +
                                     "<li>AMS?</li>"+
-                                    "<li>Also make sure that you actually change the 3d printer in a meaningful way, adding auto bed leveling does not count as a mod</ul>";
+                                    "<li>Make a high temp printer<li></ul>";
                                 info.style.height = `${info.offsetHeight}px`;
                             }
+                            if (btn.classList.contains('What')) {
+                                info.innerHTML = "So basically you should change the 3d printer ina  meaningful way, and go way beyond just adding another feature, like auto bed leveling. Try something cool and new!";
+                                info.style.height = `${info.offsetHeight}px`;
+                            }
+                            
                             runAnimation();
                         });
                     });
@@ -101,6 +106,7 @@
         <button class = "Requirements">REQUIREMENTS</button>
         <button class = "Timeline">TIMELINE</button>
         <button class = "Ideas">IDEAS</button>
+        <button class = "What">What is a remodel?</button>
     </body>
 
 </html>
