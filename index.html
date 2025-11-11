@@ -5,75 +5,102 @@
         <title>Remodel</title>
     </head>
     <body>
+        <a href = "https://blueprint.hackclub.com/" ><img alt="Flag" loading="lazy"class="flag" src="https://assets.hackclub.com/flag-orpheus-left.svg"></a>
         <h1 class = "hi">
             Remodel YSWS
         </h1>
-        <pi>
-            This is a YSWS where you can redesign some "suboptimal" printers and get the grant to make it yourself!
-        </pi>
-        <p2>
-            To get started you can take a look at the available printers. Either you can can choose one of these from aliexpress, or you can find any printer less than $80 from facebook marketplace, ebay, etc.
-        </p2>
-        <p3>
-            Once you have your printer, you can start redesigning it! You can use any CAD software you cant, but if this your your first experioeince with CAD, we recommend using Fusion 360 or onshape.
-        </p3>
-        <p4>
-            So for your mod to get approved, you are going to need:
-            <ul>
-                <li>A full 3d model of the printer with the mod</li>
-                <li>Updated firmware to integrate with the mod</li>
-                <li>A journal detailing what ou did, in a journal.md</li>
-                <li>A README.md including a picture of your CAD rendering</li>
+
+        <pi class = "intro">
+            This is a YSWS where you can redesign some "suboptimal" printers and get the grant to make it yourself! To get started you can take a look at the available printers. Either you can can choose one of these from aliexpress, or you can find any printer less than $80 from facebook marketplace, ebay, etc.Once you have your printer, you can start redesigning it! You can use any CAD software you cant, but if this your your first experioeince with CAD, we recommend using Fusion 360 or onshape.
+        </p1>
         <div class = "print">
             <img class = "base"src = assets/base.png>
             <img class = "rail" src = assets/rail.png>
             <img class = "tool" src = assets/tool.png>
-            <p2 class = "info"></p2>
+            <p2 class = "info">
+        
         </div>
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
                     const tool = document.querySelector('.tool');
                     const rail = document.querySelector('.rail');
                     const info = document.querySelector('.info');
-                    if (!tool || !rail) return;
-                    const duration = 400; 
+                    const buttons = document.querySelectorAll('button');
+                    if (!tool || !rail || !info) return;
+                    const duration = 150;
+                    const sleep = ms => new Promise(res => setTimeout(res, ms));
+                    let animating = false;
                     tool.style.transition = `transform ${duration}ms ease`;
                     rail.style.transition = `transform ${duration}ms ease`;
-                    info.style.transition = `transform ${duration}ms ease`;
+                    info.style.transition = `transform ${duration}ms ease, height 50ms linear`;
 
-                    let currentY = 0; 
-                    const sleep = ms => new Promise(res => setTimeout(res, ms));
-
-                    (async () => {
-                        for (let i = 0; i < 8; i++) {
-                            tool.style.transform = `translate(200px, ${currentY}px)`;
+                    async function runAnimation() {
+                        if (animating) return;
+                        animating = true;
+                        info.style.height = `${info.offsetHeight}px`;
+                        info.style.height = `${0}px`;
+                        let currentY = 0;
+                        for (let loop = 0; loop < 10; loop++) {
+                            tool.style.transform = `translate(300px, ${currentY}px)`;
                             await sleep(duration);
                             currentY -= 15;
                             rail.style.transform = `translateY(${currentY}px)`;
-                            tool.style.transform = `translate(200px, ${currentY}px)`;
-                            rail.style.transform = `translateY(${currentY}px)`;
+                            tool.style.transform = `translate(300px, ${currentY}px)`;
                             await sleep(duration);
-                            for (let i = 0; i < 15; i++) {
+
+                            for (let i = 0; i <3; i++) {
                                 info.style.transform = `translateY(${currentY}px)`;
-                                await sleep(10);
-                                info.style.height = `${info.offsetHeight + 1}px`;
+                                info.style.height = `${info.offsetHeight + 5}px`;
+                                await sleep(duration);
                             }
                             await sleep(duration);
+
                             currentY -= 15;
                             tool.style.transform = `translate(0px, ${currentY}px)`;
                             rail.style.transform = `translateY(${currentY}px)`;
                             await sleep(duration);
-                            for (let i = 0; i < 15; i++) {
+
+                            for (let i = 0; i < 3; i++) {
                                 info.style.transform = `translateY(${currentY}px)`;
-                                await sleep(10);
-                                info.style.height = `${info.offsetHeight + 1}px`;
+                                info.style.height = `${info.offsetHeight + 5}px`;
+                                await sleep(duration);
                             }
                             await sleep(duration);
                         }
-                    })();
+
+                        animating = false;
+                    }
+                    buttons.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            if (btn.classList.contains('Requirements')) {
+                                info.innerHTML = "So for your remodel to get approved, you are going to need:<ul>" +
+                                    "<li>A full 3D model of the printer with the mod</li>" +
+                                    "<li>Updated firmware to integrate with the mod</li>" +
+                                    "<li>A journal detailing what you did, in a journal.md</li>" +
+                                    "<li>A README.md including a picture of your CAD rendering</li></ul>";
+                                info.style.height = `${info.offsetHeight}px`;
+                            }
+                            if (btn.classList.contains('Timeline')) {
+                                info.innerHTML = "I think that there is going to be around a month or two for just the design phase and then probably building in around 2026, but this is very much subect to change.";
+                                info.style.height = `${info.offsetHeight}px`;
+                            }
+                            if (btn.classList.contains('Ideas')) {
+                                info.innerHTML = "Here are some ideas for how you could remodel your 3d printer:<ul>" +
+                                    "<li>Try making it CoreXY</li>" +
+                                    "<li>Convert the bed into a bed pritner</li>" +
+                                    "<li>Redesign the hotend and swap out the motors to optimize for speed</li>" +
+                                    "<li>AMS?</li>"+
+                                    "<li>Also make sure that you actually change the 3d printer in a meaningful way, adding auto bed leveling does not count as a mod</ul>";
+                                info.style.height = `${info.offsetHeight}px`;
+                            }
+                            runAnimation();
+                        });
+                    });
                 });
             </script>
-        <button class = "about"
+        <button class = "Requirements">REQUIREMENTS</button>
+        <button class = "Timeline">TIMELINE</button>
+        <button class = "Ideas">IDEAS</button>
     </body>
 
 </html>

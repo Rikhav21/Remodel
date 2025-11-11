@@ -12,29 +12,80 @@ body{
     font-size: 50px;
     
 }
+.flag{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 150px;
+}
 .base{
     position:absolute;
     left: 10px;
     top: 300px;
+    height:600px;
+    width: 600px;
 
 }
 .rail{
     position: absolute;
     left: 10px;
-    top: 580px;
+    top: 655px;
+    height:68px;
+    width: 496px;
 }
 .tool{
     position: absolute;
     left: 100px;
-    top: 566px;}
+    top: 641px;}
 .image{
     position: relative;
 }
 .info{
     position: absolute;
     left: 140px;
-    top: 671px;
-    width: 200px;
+    top: 744px;
+    width: 310px;
     height: 4px;
     overflow: hidden;
+    font-size: 20px;
+}
+.intro{
+    font-size: 30px;
+    font-family:'Times New Roman', Times, serif;
+}
+.Requirements{
+    position:absolute;
+    left: 610px;
+    top: 300px;
+    width: 200px;
+    height: 100px;
+    border-radius:20px;
+    border: 2px solid rgb(4, 65, 14);
+    background-color:green;
+    color: white;
+    font-size:20px;
+}
+.Ideas{
+    position:absolute;
+    left: 610px;
+    top: 540px;
+    width: 200px;
+    height: 100px;
+    border-radius:20px;
+    border: 2px solid rgb(82, 76, 1);
+    background-color:rgb(247, 163, 9);
+    color: white;
+    font-size:20px;
+}
+.Timeline{
+    position:absolute;
+    left: 610px;
+    top: 420px;
+    width: 200px;
+    height: 100px;
+    border-radius:20px;
+    border: 2px solid rgb(65, 4, 4);
+    background-color:rgb(128, 0, 0);
+    color: white;
+    font-size:20px;
 }
